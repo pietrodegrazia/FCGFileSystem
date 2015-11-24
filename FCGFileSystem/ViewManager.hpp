@@ -42,7 +42,7 @@ extern void onWindowReshape(int x, int y);
 extern void mainCreateMenu();
 extern void mainInit();
 extern void handleEnterPressed();
-
+extern void handleBackspace();
 extern int currentIndex;
 
 #endif /* ViewManager_hpp */

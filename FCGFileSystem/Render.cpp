@@ -130,19 +130,16 @@ void renderFloor() {
 
 void renderFileList(){
 //    printf("\n-- Rendering File List --\n") ;
-    char* path = (char*)malloc(sizeof(char*)*256);
+    char* path = (char*)malloc(sizeof(char)*FILENAME_MAX);
     
-//    drawCube(3, 3, 3);
-//    SolidSphere s = SolidSphere(FILE_SPHERE_RADIUS, MAX_RINGS ,MAX_SECTORS);
-////    glLoadIdentity();
-//    s.draw(0, 0, 0);
-//    
-//    
-//    return;
+    printf("%s\n\t", getCurrentPathAppending(""));
     for ( int i = 0; i < currentDirList.size(); i++) {
-        path = getCurrentPathAppending(currentDirList[i].d_name);
+
+        strcpy(path, getCurrentPathAppending(currentDirList[i].d_name));
+        printf("%s, ", currentDirList[i].d_name);
+//        printf("\t%s\n", currentDirList[i].d_name);
         int file = isFile(path);
-        //        printf("%s", path);
+//        printf("%s\n\n\n\n", path);
         
 //        glTranslatef(PADDING,0,0);
         if (file == 1) {
@@ -155,19 +152,17 @@ void renderFileList(){
         
 //        printf("%s\n", path);
     }
+    printf("\n");
 }
 
 float initialX = 0;
 void renderFile(int i){
     SolidSphere s = SolidSphere(FILE_SPHERE_RADIUS, MAX_RINGS ,MAX_SECTORS);
     s.draw(PADDING*i, 0, 0);
-
 }
 
 void renderDirectory(int i){
-
     drawCube(PADDING*i, 0,0);
-
 }
 
 void updateState() {

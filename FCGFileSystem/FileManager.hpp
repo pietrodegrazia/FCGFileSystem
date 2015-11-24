@@ -20,7 +20,6 @@
 using namespace std;
 
 #define kRootFolder "/Users/pietrodegrazia/Documents/UFRGS/FCG/FCGFileSystem/FCGFileSystem/DirA"
-#define MAX_FILE_NAME 255
 
 
 extern char* getCurrentPathAppending(char* component);

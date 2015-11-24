@@ -37,8 +37,10 @@ extern void goForward();
 extern void goBackwards();
 extern void moveHead();
 
+extern void moveOriginOnAxisX();
 extern void moveLeft();
 extern void moveRight();
 
+extern void printAllInfo();
 
 #endif /* CameraManager_hpp */

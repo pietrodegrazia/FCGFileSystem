@@ -7,7 +7,7 @@
 //
 
 #include "ViewManager.hpp"
-
+#include "FileManager.hpp"
 char windowName[] = "FCG File System 2015";
 /**
  Screen dimensions
@@ -25,9 +25,28 @@ int mainWindowId = 0;
 
 int currentIndex = 0;
 
-
+int zero = 0;
 void handleEnterPressed(){
+    char* path = (char*)malloc(sizeof(char) * FILENAME_MAX);
+    strcpy(path, getCurrentPathAppending(currentDirList[currentIndex].d_name));
     
+    int file = isFile(path);
+    if (file == 1) {
+        printf("\nFILEEE\n");
+    } else if (file == 0){
+        printf("\nDIR '%s' WITH INDEX = %i", currentDirList[currentIndex].d_name, currentIndex);
+        currentPathComponents.push_back(currentDirList[currentIndex].d_name);
+        currentDirList.clear();
+        getFileListForPath();
+        moveOriginOnAxisX();
+//        printf("%s", );
+    }
+}
+
+void handleBackspace(){
+    currentPathComponents.pop_back();
+    currentDirList.clear();
+    getFileListForPath();
 }
 
 

@@ -16,6 +16,7 @@ bool rPressed = false;
 bool cPressed = false;
 bool spacePressed = false;
 bool enterPressed = false;
+bool backspacePressed = false;
 float mouseOldX = 0;
 float mouseOldY = 0;
 float mouseMoveFactor = 1.0f;
@@ -69,6 +70,9 @@ void mainHandleMouseRightButtonMenuEvent(int option) {
  */
 void onKeyDown(unsigned char key, int x, int y) {
     switch (key) {
+        case 127:
+            backspacePressed = true;
+            break;
         case 13:
             enterPressed = true;
             break;
@@ -118,12 +122,17 @@ void onKeyDown(unsigned char key, int x, int y) {
  */
 void onKeyUp(unsigned char key, int x, int y) {
     switch (key) {
+        case 127:
+            handleBackspace();
+            backspacePressed = false;
+            break;
         case 13:
             handleEnterPressed();
             enterPressed = false;
             break;
         case 32:
             // the control to release space will be in the jump function
+            printAllInfo();
             spacePressed = false;
             break;
             
