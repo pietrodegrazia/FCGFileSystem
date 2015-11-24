@@ -17,4 +17,5 @@
 extern void renderFile();
 extern void updateState();
 extern void mainRender();
+
 #endif /* Render_hpp */

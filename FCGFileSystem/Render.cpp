@@ -11,8 +11,6 @@
 float planeSize = 4.0f;
 
 
-
-
 // parte de cÛdigo extraÌdo de "texture.c" por Michael Sweet (OpenGL SuperBible)
 // texture buffers and stuff
 int i;                       /* Looping var */

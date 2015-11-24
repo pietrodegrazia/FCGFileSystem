@@ -24,6 +24,7 @@ using namespace std;
 #include "ViewManager.hpp"
 #include "EventHandler.hpp"
 #include "CameraManager.hpp"
+#include "Render.hpp"
 //bitmap class to load bitmaps for textures
 
 
@@ -37,22 +38,7 @@ using namespace std;
 #define NUM_SOURCES 1
 #define NUM_ENVIRONMENTS 1
 
-// Consts
-
-//void initSound();
-void mainRender();
-void onGLUIEvent(int id);
 int main(int argc, char **argv);
-
-double xOffset = -1.9;
-double yOffset = -1.3;
-
-
-
-
-
-
-
 
 int main(int argc, char **argv) {
     
