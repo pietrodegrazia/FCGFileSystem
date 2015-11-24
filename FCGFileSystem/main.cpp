@@ -7,7 +7,7 @@
 
 
 #include <unistd.h>
-#include <ftw.h>
+
 #include <time.h>
 #include <string.h>
 #include <errno.h>
@@ -19,17 +19,11 @@
 #include <iostream>
 using namespace std;
 #include <GLUT/glut.h>
-#include "dirent.h"
-#include <vector>
-#include <string>
 
+#include "FileManager.hpp"
 //bitmap class to load bitmaps for textures
 #include "bitmap.h"
 
-
-#ifndef USE_FDS
-#define USE_FDS 15
-#endif
 
 //#include <mmsystem.h>
 //#pragma comment(lib, "winmm.lib")
@@ -42,8 +36,6 @@ using namespace std;
 #define NUM_ENVIRONMENTS 1
 
 // Consts
-#define kRootFolder "/Users/pietrodegrazia/Documents/UFRGS/FCG/FCGFileSystem/FCGFileSystem/DirA"
-#define MAX_FILE_NAME 255
 
 void mainInit();
 //void initSound();
@@ -64,6 +56,9 @@ void setViewport(GLint left, GLint right, GLint bottom, GLint top);
 void updateState();
 void renderFloor();
 void updateCam();
+
+
+
 
 /**
  Screen dimensions
@@ -99,9 +94,9 @@ float speedX = 0.0f;
 float speedY = 0.0f;
 float speedZ = 0.0f;
 
-float posX = 0.0f;
-float posY = 0.4f;
-float posZ = 1.0f;
+float posX = 20.0f;
+float posY = 20.4f;
+float posZ = 20.0f;
 
 /*
  variavel auxiliar pra dar variaÁ„o na altura do ponto de vista ao andar.
@@ -112,8 +107,7 @@ float maxSpeed = 0.25f;
 
 float planeSize = 4.0f;
 
-vector<dirent> currentDirList;
-vector<char*> currentPathComponents;
+
 /*
  // more sound stuff (position, speed and orientation of the listener)
  ALfloat listenerPos[]={0.0,0.0,4.0};
@@ -311,17 +305,35 @@ void initTexture(void){
     //    printf("Textures ok.\n\n", texture);
 }
 
-void renderFileList(){
-    for ( int i = 0; i < currentDirList.size(); i++) {
-        printf("%s\n", currentDirList[i].d_name);
-        
-//        if (isFile()) {
-//            statements
-//        }
-        
-    }
+GLfloat n[6][3] = {  /* Normals for the 6 faces of a cube. */
+    {-1.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, {1.0, 0.0, 0.0},
+    {0.0, -1.0, 0.0}, {0.0, 0.0, 1.0}, {0.0, 0.0, -1.0} };
+GLint faces[6][4] = {  /* Vertex indices for the 6 faces of a cube. */
+    {0, 1, 2, 3}, {3, 2, 6, 7}, {7, 6, 5, 4},
+    {4, 5, 1, 0}, {5, 6, 2, 1}, {7, 4, 0, 3} };
+GLfloat v[8][3];  /* Will be filled in with X,Y,Z vertexes. */
+void renderFile(){
+    v[0][0] = v[1][0] = v[2][0] = v[3][0] = -1;
+    v[4][0] = v[5][0] = v[6][0] = v[7][0] = 1;
+    v[0][1] = v[1][1] = v[4][1] = v[5][1] = -1;
+    v[2][1] = v[3][1] = v[6][1] = v[7][1] = 1;
+    v[0][2] = v[3][2] = v[4][2] = v[7][2] = 1;
+    v[1][2] = v[2][2] = v[5][2] = v[6][2] = -1;
     
+    int i;
+    
+    for (i = 0; i < 6; i++) {
+        glBegin(GL_QUADS);
+        glNormal3fv(&n[i][0]);
+        glVertex3fv(&v[faces[i][0]][0]);
+        glVertex3fv(&v[faces[i][1]][0]);
+        glVertex3fv(&v[faces[i][2]][0]);
+        glVertex3fv(&v[faces[i][3]][0]);
+        glEnd();
+    }
 }
+
+
 
 void renderFloor() {
     
@@ -376,11 +388,34 @@ void renderFloor() {
     glPopMatrix();
 }
 
+
+void renderFileList(){
+    printf("\n-- Rendering File List --\n");
+    char* path = (char*)malloc(sizeof(char*)*256);
+    
+    for ( int i = 0; i < currentDirList.size(); i++) {
+        path = getCurrentPathAppending(currentDirList[i].d_name);
+        int file = isFile(path);
+        //        printf("%s", path);
+        
+        if (file == 1) {
+            printf("\nFILE\n");
+            renderFile();
+        } else if (file==0){
+            printf("\nDirectory\n");
+        }
+        printf("%s\n", path);
+    }
+    
+}
+
+
 void renderScene() {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     updateCam();
     renderFloor();
+    renderFileList();
 }
 
 float initialY = 0.4f;
@@ -728,255 +763,68 @@ void mainIdle() {
     glutPostRedisplay();
 }
 
-//void listdir(const char *name, int level)
-//{
-//    DIR *dir;
-//    struct dirent *entry;
-//    
-//    if (!(dir = opendir(name)))
-//        return;
-//    if (!(entry = readdir(dir)))
-//        return;
-//    
-//    do {
-//        if (entry->d_type == DT_DIR) {
-//            char path[1024];
-//            int len = snprintf(path, sizeof(path)-1, "%s/%s", name, entry->d_name);
-//            path[len] = 0;
-//            if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
-//                continue;
-//            printf("%*s[%s]\n", level*2, "", entry->d_name);
-//            listdir(path, level + 1);
-//        }
-//        else
-//            printf("%*s- %s\n", level*2, "", entry->d_name);
-//    } while ((entry = readdir(dir)));
-//    closedir(dir);
-//}
-
-int print_entry(const char *filepath, const struct stat *info,
-                const int typeflag, struct FTW *pathinfo)
-{
-    /* const char *const filename = filepath + pathinfo->base; */
-    const double bytes = (double)info->st_size; /* Not exact if large! */
-    struct tm mtime;
+int main(int argc, char **argv) {
     
-    localtime_r(&(info->st_mtime), &mtime);
+    getFileListForPath();
     
-//    printf("%04d-%02d-%02d %02d:%02d:%02d",
-//           mtime.tm_year+1900, mtime.tm_mon+1, mtime.tm_mday,
-//           mtime.tm_hour, mtime.tm_min, mtime.tm_sec);
-    
-//    if (bytes >= 1099511627776.0)
-//        printf(" %9.3f TiB", bytes / 1099511627776.0);
-//    else
-//        if (bytes >= 1073741824.0)
-//            printf(" %9.3f GiB", bytes / 1073741824.0);
-//        else
-//            if (bytes >= 1048576.0)
-//                printf(" %9.3f MiB", bytes / 1048576.0);
-//            else
-//                if (bytes >= 1024.0)
-//                    printf(" %9.3f KiB", bytes / 1024.0);
-//                else
-//                    printf(" %9.0f B  ", bytes);
-    
-    if (typeflag == FTW_SL) {
-        char   *target;
-        size_t  maxlen = 1023;
-        ssize_t len;
+    printf("FOI\n");
+    for ( int i = 0; i < currentDirList.size(); i++) {
         
-        while (1) {
-            
-            target = (char*)malloc(maxlen + 1);
-            if (target == NULL)
-                return ENOMEM;
-            
-            len = readlink(filepath, target, maxlen);
-            if (len == (ssize_t)-1) {
-                const int saved_errno = errno;
-                free(target);
-                return saved_errno;
-            }
-            if (len >= (ssize_t)maxlen) {
-                free(target);
-                maxlen += 1024;
-                continue;
-            }
-            
-            target[len] = '\0';
-            break;
-        }
+        printf("%s\n", currentDirList[i].d_name);
         
-        printf(" %s -> %s\n", filepath, target);
-        free(target);
-        
-    } else
-        if (typeflag == FTW_SLN)
-            printf(" %s (dangling symlink)\n", filepath);
-        else
-            if (typeflag == FTW_F)
-                printf(" %s\n", filepath);
-            else
-                if (typeflag == FTW_D || typeflag == FTW_DP)
-                    printf(" %s/\n", filepath);
-                else
-                    if (typeflag == FTW_DNR)
-                        printf(" %s/ (unreadable)\n", filepath);
-                    else
-                        printf(" %s (unknown)\n", filepath);
+    }
+    
+    
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+    glutInitWindowSize(windowWidth,windowHeight);
+    glutInitWindowPosition(windowXPos,windowYPos);
+    
+    /**
+     Store main window id so that glui can send it redisplay events
+     */
+    mainWindowId = glutCreateWindow("FPS");
+    
+    glutDisplayFunc(mainRender);
+    
+    glutReshapeFunc(onWindowReshape);
+    
+    /**
+     Register mouse events handlers
+     */
+    glutMouseFunc(onMouseButton);
+    glutMotionFunc(onMouseMove);
+    glutPassiveMotionFunc(onMousePassiveMove);
+    
+    /**
+     Register keyboard events handlers
+     */
+    glutKeyboardFunc(onKeyDown);
+    glutKeyboardUpFunc(onKeyUp);
+    
+    mainInit();
+    
+    /**
+     Create GLUT mouse button menus
+     */
+    //        mainCreateMenu();
+    
+    glutMainLoop();
     
     return 0;
-}
-
-
-int print_directory_tree(const char *const dirpath)
-{
-    int result;
     
-    /* Invalid directory path? */
-    if (dirpath == NULL || *dirpath == '\0')
-        return errno = EINVAL;
-    
-    result = nftw(dirpath, print_entry, USE_FDS, FTW_PHYS);
-    if (result >= 0)
-        errno = result;
-    
-    return errno;
-}
-
-int isFile(const char* name)
-{
-    DIR* directory = opendir(name);
-    
-    if(directory != NULL)
-    {
-        closedir(directory);
-        return 0;
-    }
-    
-    if(errno == ENOTDIR)
-    {
-        return 1;
-    }
-    
-    return -1;
-}
-
-char* getCurrentPath(){
-    int cmpSize = 1;
-    if (currentPathComponents.size() >0) {
-        cmpSize = currentPathComponents.size();
-    }
-    char* path = (char*)malloc(sizeof(char) * MAX_FILE_NAME * cmpSize);
-    strcpy(path, kRootFolder);
-    strcat(path, "/");
-//    char* component = (char*)malloc(sizeof(char) * MAX_FILE_NAME);
-    for ( int i = 0; i < currentPathComponents.size(); i++) {
-//        strcpy(component, currentPathComponents[i]);
-        strcat(path, currentPathComponents[i]);
-        strcat(path, "/");
-    }
-    
-    return path;
-}
-
-void getFileListForPath(){
-
-    char* dirpath = getCurrentPath();
-    
-    DIR *dir;
-    struct dirent *ent;
-    if ((dir = opendir(dirpath)) != NULL) {
-        /* print all the files and directories within directory */
-        while ((ent = readdir (dir)) != NULL) {
-            if (strcmp(ent->d_name, "..") && strcmp(ent->d_name, ".")) {
-                char* path = (char*)malloc(sizeof(char*)*256);
-//                printf("dirpath: %s", dirpath);
-                strcpy(path, dirpath);
-                strcat(path, "/");
-                strcat(path, ent->d_name);
-                
-                currentDirList.push_back(*ent);
-                int file = isFile(path);
-                printf ("%s",path);
-                
-                if (file == 1){
-                    printf(", File\n");
-                } else if (file == 0) {
-                    printf(", Directory\n");
-                }
-            }
-        }
-        closedir (dir);
-    } else {
-        /* could not open directory */
-        perror ("");
-    }
-}
-
-int main(int argc, char **argv) {
-
-        getFileListForPath();
-    
-        printf("FOI\n");
-        for ( int i = 0; i < currentDirList.size(); i++) {
-            
-            printf("%s\n", currentDirList[i].d_name);
-            
-        }
-    
-    
-        glutInit(&argc, argv);
-        glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-        glutInitWindowSize(windowWidth,windowHeight);
-        glutInitWindowPosition(windowXPos,windowYPos);
-    
-        /**
-         Store main window id so that glui can send it redisplay events
-         */
-        mainWindowId = glutCreateWindow("FPS");
-    
-        glutDisplayFunc(mainRender);
-    
-        glutReshapeFunc(onWindowReshape);
-    
-        /**
-         Register mouse events handlers
-         */
-        glutMouseFunc(onMouseButton);
-        glutMotionFunc(onMouseMove);
-        glutPassiveMotionFunc(onMousePassiveMove);
-    
-        /**
-         Register keyboard events handlers
-         */
-        glutKeyboardFunc(onKeyDown);
-        glutKeyboardUpFunc(onKeyUp);
-    
-        mainInit();
-    
-        /**
-         Create GLUT mouse button menus
-         */
-//        mainCreateMenu();
-    
-        glutMainLoop();
-        
-        return 0;
-
 }
 
 
 
-    
-    
-    
-    
-    //    listdir(".", 0);
+
+
+
+
+//    listdir(".", 0);
 //    return 0;
-    
-    //    DIR *dir;
+
+//    DIR *dir;
 //    struct dirent *ent;
 //    if ((dir = opendir ("/Users")) != NULL) {
 //        /* print all the files and directories within directory */
