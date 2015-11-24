@@ -43,4 +43,6 @@ extern void mainCreateMenu();
 extern void mainInit();
 extern void handleEnterPressed();
 
+extern int currentIndex;
+
 #endif /* ViewManager_hpp */

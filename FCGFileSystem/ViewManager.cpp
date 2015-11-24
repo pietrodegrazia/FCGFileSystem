@@ -23,6 +23,7 @@ int windowYPos = 150;
 int mainWindowId = 0;
 
 
+int currentIndex = 0;
 
 
 void handleEnterPressed(){

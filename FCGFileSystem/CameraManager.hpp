@@ -27,7 +27,6 @@ extern float roty;
 extern float rotx;
 
 extern float headPosAux;
-extern int currentIndex;
 
 extern void moveCamera();
 //extern void jump();
