@@ -14,6 +14,7 @@
 		5290C4071C04A5BB0069818A /* CameraManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5290C4051C04A5BB0069818A /* CameraManager.cpp */; };
 		5290C40A1C04A7130069818A /* Render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5290C4081C04A7130069818A /* Render.cpp */; };
 		52CB72D31C03A8F90050739A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52CB72D21C03A8F90050739A /* main.cpp */; };
+		62697A4B1C0496750009653B /* SolidSphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62697A491C0496750009653B /* SolidSphere.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +44,8 @@
 		5290C4091C04A7130069818A /* Render.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Render.hpp; sourceTree = "<group>"; };
 		52CB72CF1C03A8F90050739A /* FCGFileSystem */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FCGFileSystem; sourceTree = BUILT_PRODUCTS_DIR; };
 		52CB72D21C03A8F90050739A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		62697A491C0496750009653B /* SolidSphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SolidSphere.cpp; sourceTree = "<group>"; };
+		62697A4A1C0496750009653B /* SolidSphere.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SolidSphere.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
