@@ -8,7 +8,8 @@
 
 #include "Render.hpp"
 
-float planeSize = 4.0f;
+
+float planeSize = 100.0f;
 
 
 // parte de cÛdigo extraÌdo de "texture.c" por Michael Sweet (OpenGL SuperBible)
@@ -128,42 +129,53 @@ void renderFloor() {
 
 
 void renderFileList(){
-    printf("\n-- Rendering File List --\n");
+//    printf("\n-- Rendering File List --\n") ;
     char* path = (char*)malloc(sizeof(char*)*256);
     
+//    drawCube(3, 3, 3);
+//    SolidSphere s = SolidSphere(FILE_SPHERE_RADIUS, MAX_RINGS ,MAX_SECTORS);
+////    glLoadIdentity();
+//    s.draw(0, 0, 0);
+//    
+//    
+//    return;
     for ( int i = 0; i < currentDirList.size(); i++) {
         path = getCurrentPathAppending(currentDirList[i].d_name);
         int file = isFile(path);
         //        printf("%s", path);
         
-        glTranslatef(PADDING,0,0);
+//        glTranslatef(PADDING,0,0);
         if (file == 1) {
-            printf("\nFILE\n");
+//            printf("\nFILE\n");
             renderFile(i);
         } else if (file==0){
-            printf("\nDirectory\n");
+//            printf("\nDirectory\n");
             renderDirectory(i);
-            
         }
-        printf("%s\n", path);
+        
+//        printf("%s\n", path);
     }
 }
 
 float initialX = 0;
 void renderFile(int i){
     SolidSphere s = SolidSphere(FILE_SPHERE_RADIUS, MAX_RINGS ,MAX_SECTORS);
-    s.draw(initialX + i*FILE_SPHERE_RADIUS*2, 0, 0);
+    s.draw(PADDING*i, 0, 0);
+
 }
 
 void renderDirectory(int i){
-//    DrawCube(initialX + i*FILE_SPHERE_RADIUS*2 , 0, 0, FILE_SPHERE_RADIUS*2, 3, 1);
-    drawCube(initialX + i*FILE_SPHERE_RADIUS*2 + PADDING , 0,0);
+
+    drawCube(PADDING*i, 0,0);
+
 }
 
 void updateState() {
     moveCamera();
-    jump();
-    crawl();
+//    rotateRight();
+//    rotateLeft();
+//    jump();s
+//    crawl();
     goForward();
     goBackwards();
     moveHead();

@@ -15,8 +15,7 @@
 #include "FileManager.hpp"
 #include "SolidSphere.cpp"
 #include "Cube.hpp"
-
-#define PADDING 5
+#include "Constants.h"
 
 extern void renderFile(int i);
 extern void updateState();

@@ -41,8 +41,6 @@ extern void renderScene();
 extern void onWindowReshape(int x, int y);
 extern void mainCreateMenu();
 extern void mainInit();
-
-
-
+extern void handleEnterPressed();
 
 #endif /* ViewManager_hpp */

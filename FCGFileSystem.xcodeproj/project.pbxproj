@@ -33,6 +33,7 @@
 /* Begin PBXFileReference section */
 		52265F0D1C03AA1D0047A96F /* bitmap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bitmap.c; sourceTree = "<group>"; };
 		52265F0E1C03AA1D0047A96F /* bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitmap.h; sourceTree = "<group>"; };
+		522D21461C04FB22001BB42D /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		5290C3FC1C0490270069818A /* FileManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileManager.cpp; sourceTree = "<group>"; };
 		5290C3FD1C0490270069818A /* FileManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FileManager.hpp; sourceTree = "<group>"; };
 		5290C3FF1C0496200069818A /* ViewManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ViewManager.cpp; sourceTree = "<group>"; };
@@ -85,6 +86,9 @@
 				52265F0E1C03AA1D0047A96F /* bitmap.h */,
 				5290C4051C04A5BB0069818A /* CameraManager.cpp */,
 				5290C4061C04A5BB0069818A /* CameraManager.hpp */,
+				522D21461C04FB22001BB42D /* Constants.h */,
+				5290C40B1C04BBE50069818A /* Cube.cpp */,
+				5290C40C1C04BBE50069818A /* Cube.hpp */,
 				5290C4021C04A3840069818A /* EventHandler.cpp */,
 				5290C4031C04A3840069818A /* EventHandler.hpp */,
 				5290C3FC1C0490270069818A /* FileManager.cpp */,
@@ -92,12 +96,10 @@
 				52CB72D21C03A8F90050739A /* main.cpp */,
 				5290C4081C04A7130069818A /* Render.cpp */,
 				5290C4091C04A7130069818A /* Render.hpp */,
-				5290C3FF1C0496200069818A /* ViewManager.cpp */,
-				5290C4001C0496200069818A /* ViewManager.hpp */,
 				62697A491C0496750009653B /* SolidSphere.cpp */,
 				62697A4A1C0496750009653B /* SolidSphere.hpp */,
-				5290C40B1C04BBE50069818A /* Cube.cpp */,
-				5290C40C1C04BBE50069818A /* Cube.hpp */,
+				5290C3FF1C0496200069818A /* ViewManager.cpp */,
+				5290C4001C0496200069818A /* ViewManager.hpp */,
 			);
 			path = FCGFileSystem;
 			sourceTree = "<group>";

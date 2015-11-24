@@ -66,6 +66,7 @@ public:
     }
     
     void draw(GLfloat x, GLfloat y, GLfloat z){
+//        printf("\n CUBOLA = X: %f\n",x);
         glMatrixMode(GL_MODELVIEW);
         glPushMatrix();
         glTranslatef(x,y,z);

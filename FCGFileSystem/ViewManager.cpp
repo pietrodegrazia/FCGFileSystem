@@ -22,6 +22,16 @@ int windowXPos = 100;
 int windowYPos = 150;
 int mainWindowId = 0;
 
+
+
+
+void handleEnterPressed(){
+    
+}
+
+
+
+
 /**
  Glut idle funtion
  */

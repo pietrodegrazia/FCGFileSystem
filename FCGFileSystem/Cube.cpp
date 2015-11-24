@@ -10,8 +10,10 @@
 
 
 void drawCube(GLfloat x, GLfloat y, GLfloat z){
+//    printf("\n CUBO = X: %f\n",x);
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
+    glTranslatef(x,y,z);
 
     
     glBegin(GL_QUADS);
@@ -69,15 +71,15 @@ void drawCube(GLfloat x, GLfloat y, GLfloat z){
     glBegin(GL_QUADS);
     
     glNormal3d(0, -1, 0);
-    glVertex3f(  0.1, -0.1, -0.1 );
-    glVertex3f(  0.1, -0.1,  0.1 );
-    glVertex3f( -0.1, -0.1,  0.1 );
-    glVertex3f( -0.1, -0.1, -0.1 );
+    glVertex3f(  1, -1, -1 );
+    glVertex3f(  1, -1,  1 );
+    glVertex3f( -1, -1,  1 );
+    glVertex3f( -1, -1, -1 );
     glEnd();
 
     glPopMatrix();
 
-    //    glFlush();
+//    glFlush();
     
 }
 

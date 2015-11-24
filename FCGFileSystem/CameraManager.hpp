@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include "ViewManager.hpp"
 #include "EventHandler.hpp"
+#include "FileManager.hpp"
+#include "Constants.h"
 
 extern float speedX;
 extern float speedY;
@@ -25,16 +27,19 @@ extern float roty;
 extern float rotx;
 
 extern float headPosAux;
-
+extern int currentIndex;
 
 extern void moveCamera();
-extern void jump();
-extern void crawl();
+//extern void jump();
+//extern void crawl();
 extern void rotateLeft();
 extern void rotateRight();
 extern void goForward();
 extern void goBackwards();
 extern void moveHead();
+
+extern void moveLeft();
+extern void moveRight();
 
 
 #endif /* CameraManager_hpp */

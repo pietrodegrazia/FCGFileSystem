@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <GLUT/glut.h>
 #include <iostream>
+#include "CameraManager.hpp"
 
 extern bool rightPressed;
 extern bool leftPressed;
@@ -27,21 +28,21 @@ extern float mouseMoveFactor;
 extern int mouseLastX;
 extern int mouseLastY;
 
-
-extern void onMouseButton(int button, int state, int x, int y);
-
-extern void mainHandleMouseRightButtonMenuEvent(int option);
-
-
-/**
- Mouse move while button pressed event handler
- */
-extern void onMouseMove(int x, int y);
-
-/**
- Mouse move with no button pressed event handler
- */
-extern void onMousePassiveMove(int x, int y);
+//
+//extern void onMouseButton(int button, int state, int x, int y);
+//
+//extern void mainHandleMouseRightButtonMenuEvent(int option);
+//
+//
+///**
+// Mouse move while button pressed event handler
+// */
+//extern void onMouseMove(int x, int y);
+//
+///**
+// Mouse move with no button pressed event handler
+// */
+//extern void onMousePassiveMove(int x, int y);
 /**
  Key press event handler
  */
