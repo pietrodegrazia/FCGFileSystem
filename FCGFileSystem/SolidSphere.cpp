@@ -12,6 +12,9 @@
 #include <GLUT/GLUT.h>
 #include <vector>
 #include <cmath>
+#define MAX_RINGS 1000
+#define MAX_SECTORS 50
+#define FILE_SPHERE_RADIUS 1
 
 // your framework of choice here
 

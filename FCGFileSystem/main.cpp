@@ -6,6 +6,7 @@
 //#include <windows.h>
 
 
+
 #include <unistd.h>
 
 #include <time.h>
@@ -50,8 +51,6 @@ int main(int argc, char **argv) {
         printf("%s\n", currentDirList[i].d_name);
         
     }
-    
-    
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
     glutInitWindowSize(windowWidth,windowHeight);
@@ -61,11 +60,8 @@ int main(int argc, char **argv) {
      Store main window id so that glui can send it redisplay events
      */
     mainWindowId = glutCreateWindow(windowName);
-    
     glutDisplayFunc(mainRender);
-    
     glutReshapeFunc(onWindowReshape);
-    
     /**
      Register mouse events handlers
      */

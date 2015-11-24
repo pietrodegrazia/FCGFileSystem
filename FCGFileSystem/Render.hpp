@@ -13,9 +13,15 @@
 #include <GLUT/glut.h>
 #include "CameraManager.hpp"
 #include "FileManager.hpp"
+#include "SolidSphere.cpp"
+#include "Cube.hpp"
 
-extern void renderFile();
+#define PADDING 5
+
+extern void renderFile(int i);
 extern void updateState();
 extern void mainRender();
+extern void renderDirectory(int i);
+
 
 #endif /* Render_hpp */
