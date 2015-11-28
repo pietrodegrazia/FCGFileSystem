@@ -41,12 +41,14 @@ void handleEnterPressed(){
         moveOriginOnAxisX();
 //        printf("%s", );
     }
+    glutPostRedisplay();
 }
 
 void handleBackspace(){
     currentPathComponents.pop_back();
     currentDirList.clear();
     getFileListForPath();
+    glutPostRedisplay();
 }
 
 
@@ -138,6 +140,7 @@ void onWindowReshape(int x, int y) {
     windowHeight = y;
     setWindow();
     setViewport(0, windowWidth, 0, windowHeight);
+        glutPostRedisplay();
 }
 
 

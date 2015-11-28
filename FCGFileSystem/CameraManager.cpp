@@ -95,6 +95,7 @@ void moveLeft(){
         }
     }
     updateIndex();
+        glutPostRedisplay();
 }
 
 void moveRight(){
@@ -106,6 +107,7 @@ void moveRight(){
         }
     }
     updateIndex();
+    glutPostRedisplay();
 }
 
 float jumpUpFactor = 0.025f;

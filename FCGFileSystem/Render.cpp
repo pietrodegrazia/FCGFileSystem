@@ -183,5 +183,5 @@ void mainRender() {
     updateState();
     renderScene();
     glFlush();
-    glutPostRedisplay();
+//    glutPostRedisplay();
 }
