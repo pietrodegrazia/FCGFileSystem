@@ -63,10 +63,17 @@ public:
         }
     }
     
-    void draw(GLfloat x, GLfloat y, GLfloat z){
+    void draw(GLfloat x, GLfloat y, GLfloat z,bool shouldHighlight){
 //        printf("\n CUBOLA = X: %f\n",x);
         glMatrixMode(GL_MODELVIEW);
         glPushMatrix();
+        
+        if (shouldHighlight) {
+            glColor3f(0.5f, 1.0f, 0.0f);
+        } else {
+            glColor3f(1.0f, 1.0f, 1.0f);
+        }
+        
         glTranslatef(x,y,z);
         
         glEnableClientState(GL_VERTEX_ARRAY);

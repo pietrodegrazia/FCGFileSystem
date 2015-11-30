@@ -127,7 +127,7 @@ void renderFloor() {
     glPopMatrix();
 }
 
-
+bool selected = false;
 void renderFileList(){
     printf("\n*****************Rendering File List**********************\n");
     
@@ -143,7 +143,7 @@ void renderFileList(){
 //        printf("\t%s\n", currentDirList[i].d_name);
         int file = isFile(path);
 //        printf("%s\n\n\n\n", path);
-        
+        selected = i == currentIndex ? true : false;
 //        glTranslatef(PADDING,0,0);
         if (file == 1) {
 //            printf("\nFILE\n");
@@ -164,11 +164,11 @@ void renderFileList(){
 float initialX = 0;
 void renderFile(int i){
     SolidSphere s = SolidSphere(FILE_SPHERE_RADIUS, MAX_RINGS ,MAX_SECTORS);
-    s.draw(PADDING*i, 0, 0);
+    s.draw(PADDING*i, 0, 0,selected);
 }
 
 void renderDirectory(int i){
-    drawCube(PADDING*i, 0,0);
+    drawCube(PADDING*i, 0,0,selected);
 }
 
 void updateState() {

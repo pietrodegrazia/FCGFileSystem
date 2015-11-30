@@ -44,10 +44,12 @@ void handleEnterPressed(){
 }
 
 void handleBackspace(){
-    currentPathComponents.pop_back();
-    currentDirList.clear();
-    getFileListForPath();
-    glutPostRedisplay();
+    if(currentPathComponents.size() > 0){
+        currentPathComponents.pop_back();
+        currentDirList.clear();
+        getFileListForPath();
+        glutPostRedisplay();
+    }
 }
 
 void mainIdle() {

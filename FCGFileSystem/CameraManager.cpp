@@ -15,8 +15,8 @@ float speedY = 0.0f;
 float speedZ = 0.0f;
 
 float posX = 0.0f;
-float posY = 3.0f;
-float posZ = 12.0f;
+float posY = 5.0f;
+float posZ = 20.0f;
 
 float roty = 0.0f;
 float rotx = 90.0f;

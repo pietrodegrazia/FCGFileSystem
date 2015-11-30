@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "68"
             endingLineNumber = "68"
-            landmarkName = "draw(GLfloat x, GLfloat y, GLfloat z)"
+            landmarkName = "draw(GLfloat x, GLfloat y, GLfloat z,bool shouldHighlight)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -80,22 +80,6 @@
             startingLineNumber = "17"
             endingLineNumber = "17"
             landmarkName = "isFile(const char* name)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FCGFileSystem/ViewManager.cpp"
-            timestampString = "470521179.032958"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "handleEnterPressed()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

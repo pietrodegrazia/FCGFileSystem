@@ -9,7 +9,7 @@
 #include "Cube.hpp"
 
 
-void drawCube(GLfloat x, GLfloat y, GLfloat z){
+void drawCube(GLfloat x, GLfloat y, GLfloat z, bool shouldHighlight){
 //    printf("\n CUBO = X: %f\n",x);
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
@@ -17,8 +17,13 @@ void drawCube(GLfloat x, GLfloat y, GLfloat z){
 
     
     glBegin(GL_QUADS);
-
-
+    
+    if (shouldHighlight) {
+        glColor3f(0.5f, 1.0f, 0.0f);
+    } else {
+        glColor3f(1.0f, 1.0f, 1.0f);
+    }
+    
     glNormal3d(0, 0, -1);
     glVertex3f(1, -1, -1 );
     glVertex3f(1, 1, -1 );
