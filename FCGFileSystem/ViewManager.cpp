@@ -20,6 +20,15 @@ int currentIndex = 0;
 
 int zero = 0;
 
+void updateIndex(bool increment){
+    if (increment && (currentIndex+1 < currentDirList.size() ) ) {
+        currentIndex++;
+    } else if( !(increment) && ( currentIndex-1 >= 0 ) ){
+        currentIndex--;
+    }
+}
+
+
 void handleEnterPressed(){
     printf("\n************* ENTER PRESSED ****************\n");
     char* path = (char*)malloc(sizeof(char) * FILENAME_MAX);

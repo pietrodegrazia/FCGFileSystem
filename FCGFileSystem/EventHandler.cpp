@@ -60,7 +60,14 @@ void onMousePassiveMove(int x, int y) {
 }
 
 void onKeyDown(unsigned char key, int x, int y) {
+    
     switch (key) {
+        case 113: //q
+            updateIndex(false);
+            break;
+        case 101: // e
+            updateIndex(true);
+            break;
         case 127:
             backspacePressed = true;
             break;
@@ -102,6 +109,7 @@ void onKeyDown(unsigned char key, int x, int y) {
     }
     
     glutPostRedisplay();
+    printf("\nKEY PRESSED - %i", key);
 }
 
 void onKeyUp(unsigned char key, int x, int y) {

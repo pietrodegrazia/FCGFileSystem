@@ -44,5 +44,5 @@ extern void mainInit();
 extern void handleEnterPressed();
 extern void handleBackspace();
 extern int currentIndex;
-
+extern void updateIndex(bool increment);
 #endif /* ViewManager_hpp */

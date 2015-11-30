@@ -23,7 +23,6 @@ float rotx = 90.0f;
 
 float runAccelerationFactor = 1.5f;
 
-
 float moveHeadHeightVariation = 1.0f;
 float initialYMoveHead = 0.0f;
 float moveHeadFactor = 0.025f;
@@ -44,8 +43,9 @@ void updateCam() {
               posX + sin(roty*PI/180),posY + 0.025 * std::abs(sin(headPosAux*PI/180)) + cos(rotx*PI/180),posZ -cos(roty*PI/180),
               0.0,1.0,0.0);
     moveCamera();
-    
-    
+    goForward();
+    goBackwards();
+
 }
 
 void moveCamera(){
@@ -89,9 +89,6 @@ void moveCamera(){
             mouseOldY = mouseLastY;
         }
 }
-void updateIndex(){
-    currentIndex = posX/3;
-}
 void moveOriginOnAxisX(){
     posX = 0;
 }
@@ -102,7 +99,6 @@ void moveLeft(){
             posX -= jumpSideFactor;
         }
     }
-    updateIndex();
     glutPostRedisplay();
 }
 void moveRight(){
@@ -113,7 +109,6 @@ void moveRight(){
             posX += jumpSideFactor;
         }
     }
-    updateIndex();
     glutPostRedisplay();
 }
 //void rotateLeft(){

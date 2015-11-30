@@ -29,15 +29,9 @@ extern float rotx;
 extern float headPosAux;
 
 extern void updateCam();
-extern void moveCamera();
-//extern void jump();
-//extern void crawl();
-extern void rotateLeft();
-extern void rotateRight();
-extern void goForward();
-extern void goBackwards();
-extern void moveHead();
-
+void moveCamera();
+void goForward();
+void goBackwards();
 extern void moveOriginOnAxisX();
 extern void moveLeft();
 extern void moveRight();
