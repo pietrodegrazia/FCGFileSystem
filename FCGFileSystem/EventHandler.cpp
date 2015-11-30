@@ -24,19 +24,17 @@ int mouseLastX = 0;
 int mouseLastY = 0;
 
 void registerEventHandlers(){
-    //    glutMouseFunc(onMouseButton);
-    //    glutMotionFunc(onMouseMove);
-    //    glutPassiveMotionFunc(onMousePassiveMove);
-    
+//    glutMouseFunc(onMouseButton);
+    glutMotionFunc(onMouseMove);
+    glutPassiveMotionFunc(onMousePassiveMove);
     glutKeyboardFunc(onKeyDown);
     glutKeyboardUpFunc(onKeyUp);
-    
 }
 
 
-void onMouseButton(int button, int state, int x, int y) {
+//void onMouseButton(int button, int state, int x, int y) {
 //    glutPostRedisplay();
-}
+//}
 
 void mainHandleMouseRightButtonMenuEvent(int option) {
     switch (option) {
@@ -48,18 +46,18 @@ void mainHandleMouseRightButtonMenuEvent(int option) {
     }
 }
 
-//void onMouseMove(int x, int y) {
-//    mouseLastX = x;
-//    mouseLastY = y;
-//    //    printf("%d, %d\n", x, y);
-//    
-//    glutPostRedisplay();
-//}
+void onMouseMove(int x, int y) {
+    mouseLastX = x;
+    mouseLastY = y;
+    //    printf("%d, %d\n", x, y);
+    
+    glutPostRedisplay();
+}
 
-//void onMousePassiveMove(int x, int y) {
-//    mouseLastX = x;
-//    mouseLastY = y;
-//}
+void onMousePassiveMove(int x, int y) {
+    mouseLastX = x;
+    mouseLastY = y;
+}
 
 void onKeyDown(unsigned char key, int x, int y) {
     switch (key) {
@@ -82,7 +80,7 @@ void onKeyDown(unsigned char key, int x, int y) {
             break;
             
         case 97: //a
-            moveLeft();
+//            moveLeft();
             leftPressed = true;
             break;
             
@@ -91,7 +89,7 @@ void onKeyDown(unsigned char key, int x, int y) {
             break;
             
         case 100: //d
-            moveRight();
+//            moveRight();
             rightPressed = true;
             break;
             
@@ -103,7 +101,7 @@ void onKeyDown(unsigned char key, int x, int y) {
             break;
     }
     
-    //glutPostRedisplay();
+    glutPostRedisplay();
 }
 
 void onKeyUp(unsigned char key, int x, int y) {
@@ -157,5 +155,5 @@ void onKeyUp(unsigned char key, int x, int y) {
             break;
     }
     
-    //glutPostRedisplay();
+    glutPostRedisplay();
 }

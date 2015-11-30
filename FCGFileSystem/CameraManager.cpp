@@ -21,12 +21,32 @@ float posZ = 20.0f;
 float roty = 0.0f;
 float rotx = 90.0f;
 
-/*
- variavel auxiliar pra dar variaÁ„o na altura do ponto de vista ao andar.
- */
+float runAccelerationFactor = 1.5f;
+
+
+float moveHeadHeightVariation = 1.0f;
+float initialYMoveHead = 0.0f;
+float moveHeadFactor = 0.025f;
+
 float headPosAux = 2.0f;
 
 float maxSpeed = 1.0f;
+float jumpUpFactor = 0.025f;
+float jumpDownFactor = 0.025f;
+float jumpHeight = 0.8f;
+bool isJumping = false;
+bool isJumpingUp = false;
+bool isJumpingDown = false;
+float jumpSideFactor = 0.000001;
+
+void updateCam() {
+    gluLookAt(posX, posY + 0.025 * std::abs(sin(headPosAux*PI/180)),posZ,
+              posX + sin(roty*PI/180),posY + 0.025 * std::abs(sin(headPosAux*PI/180)) + cos(rotx*PI/180),posZ -cos(roty*PI/180),
+              0.0,1.0,0.0);
+    moveCamera();
+    
+    
+}
 
 void moveCamera(){
     // Deprecated in OS X 10.9
@@ -35,51 +55,46 @@ void moveCamera(){
     windowWidth = glutGet(GLUT_WINDOW_WIDTH);
     windowHeight = glutGet(GLUT_WINDOW_HEIGHT);
     
-    // restrain mouse to the window
-    //    bool isMouseInsideWindow = (mouseLastY > 0) && (mouseLastY < windowHeight) && (mouseLastX > 0) && (mouseLastX < windowWidth);
-    //    if (isMouseInsideWindow){
-    //        float mouseMoveX = (mouseLastX - mouseOldX);
-    //        float mouseMoveY = (mouseLastY - mouseOldY);
-    //
-    //        if (mouseMoveX > 0){
-    //            // Right
-    //            roty += mouseMoveFactor;
-    //        }else{
-    //            // Left
-    //            if (mouseMoveX < 0){
-    //                roty -= mouseMoveFactor;
-    //            }else{
-    //                // no move
-    //            }
-    //        }
-    //
-    //        if (mouseMoveY > 0){
-    //            // Up
-    //            rotx += mouseMoveFactor;
-    //        }else{
-    //            // Down
-    //            if (mouseMoveY < 0){
-    //                rotx -= mouseMoveFactor;
-    //            }else{
-    //                // no move
-    //            }
-    //        }
-    //
-    //        mouseOldX = mouseLastX;
-    //        mouseOldY = mouseLastY;
-    //    }
+//     restrain mouse to the window
+        bool isMouseInsideWindow = (mouseLastY > 0) && (mouseLastY < windowHeight) && (mouseLastX > 0) && (mouseLastX < windowWidth);
+        if (isMouseInsideWindow){
+            float mouseMoveX = (mouseLastX - mouseOldX);
+            float mouseMoveY = (mouseLastY - mouseOldY);
+    
+            if (mouseMoveX > 0){
+                // Right
+                roty += mouseMoveFactor;
+            }else{
+                // Left
+                if (mouseMoveX < 0){
+                    roty -= mouseMoveFactor;
+                }else{
+                    // no move
+                }
+            }
+    
+            if (mouseMoveY > 0){
+                // Up
+                rotx += mouseMoveFactor;
+            }else{
+                // Down
+                if (mouseMoveY < 0){
+                    rotx -= mouseMoveFactor;
+                }else{
+                    // no move
+                }
+            }
+    
+            mouseOldX = mouseLastX;
+            mouseOldY = mouseLastY;
+        }
 }
-
 void updateIndex(){
     currentIndex = posX/3;
 }
-
-float jumpSideFactor = 0.000001;
-
 void moveOriginOnAxisX(){
     posX = 0;
 }
-
 void moveLeft(){
     float newPosition = posX - PADDING;
     if(newPosition >= 0){
@@ -90,7 +105,6 @@ void moveLeft(){
     updateIndex();
     glutPostRedisplay();
 }
-
 void moveRight(){
     float maxPosition = currentDirList.size() * PADDING;
     float newPosition = posX + PADDING;
@@ -102,106 +116,34 @@ void moveRight(){
     updateIndex();
     glutPostRedisplay();
 }
-
-float jumpUpFactor = 0.025f;
-float jumpDownFactor = 0.025f;
-float jumpHeight = 0.8f;
-bool isJumping = false;
-bool isJumpingUp = false;
-bool isJumpingDown = false;
-//void jump(){
-//    if (spacePressed && !isJumping) {
-//        isJumping = true;
-//        isJumpingUp = true;
-//        isJumpingDown = false;
-//    }
-//
-//    if (isJumpingUp) {
-//        posY += jumpUpFactor;
-//        if (posY > jumpHeight) {
-//            posY = jumpHeight;
-//            isJumpingUp = false;
-//            isJumpingDown = true;
-//        }
-//    }
-//
-//    if (isJumpingDown) {
-//        posY -= jumpDownFactor;
-//        if (posY < initialY) {
-//            posY = initialY;
-//            isJumping = false;
-//            isJumpingDown = false;
-//        }
+//void rotateLeft(){
+//    if (leftPressed) {
+//        roty -= 4.0f;
+////    }
+//}
+//void rotateRight(){
+//    if (rightPressed) {
+//        roty += 4.0f;
 //    }
 //}
-
-//float crawlingFactor = 0.025f;
-//float crawlingHeight = 0.125f;
-//bool isCrawling = false;
-//void crawl(){
-//    if (cPressed) {
-//        if (!isJumping) {
-//            isCrawling = true;
-//            posY -= crawlingFactor;
-//            if (posY < crawlingHeight) {
-//                posY = crawlingHeight;
-//            }
-//        }
-//    }else{
-//        if (isCrawling){
-//            posY += crawlingFactor;
-//            if (posY > initialY) {
-//                posY = initialY;
-//                isCrawling = false;
-//            }
-//        }
-//    }
-//}
-
-void rotateLeft(){
-    if (leftPressed) {
-        roty -= 4.0f;
-    }
-}
-
-void rotateRight(){
-    if (rightPressed) {
-        roty += 4.0f;
-    }
-}
-
-float runAccelerationFactor = 1.5f;
 void goForward(){
     if (upPressed) {
-        speedX = 0.025 * sin(roty*PI/180);
-        speedZ = -0.025 * cos(roty*PI/180);
+        speedX = 0.4 * sin(roty*PI/180);
+        speedZ = -0.4 * cos(roty*PI/180);
         
-        if (rPressed) {
-            speedX *= runAccelerationFactor;
-            speedZ *= runAccelerationFactor;
-        }
         posX += speedX;
         posZ += speedZ;
     }
 }
-
 void goBackwards(){
     if (downPressed) {
-        speedX = 0.025 * sin(roty*PI/180);
-        speedZ = -0.025 * cos(roty*PI/180);
-        if (rPressed) {
-            speedX *= runAccelerationFactor;
-            speedZ *= runAccelerationFactor;
-        }
+        speedX = 0.4 * sin(roty*PI/180);
+        speedZ = -0.4 * cos(roty*PI/180);
         
         posX -= speedX;
         posZ -= speedZ;
     }
 }
-
-float moveHeadHeightVariation = 1.0f;
-float initialYMoveHead = 0.0f;
-float moveHeadFactor = 0.025f;
 void moveHead(){
     if ((upPressed || downPressed) && (!isJumping) ){
         if (headPosAux == 0.0f){
@@ -218,4 +160,5 @@ void moveHead(){
             }
         }
     }
+
 }

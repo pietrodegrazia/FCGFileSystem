@@ -31,7 +31,7 @@ extern int mainWindowId;
 extern void mainIdle();
 extern void mainInit();
 extern void setWindow();
-extern void updateCam();
+
 
 extern void setViewport(GLint left, GLint right, GLint bottom, GLint top);
 extern void initTexture(void);

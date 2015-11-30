@@ -94,19 +94,7 @@ void setWindow() {
               0.0,1.0,0.0);
 }
 
-void updateCam() {
-    gluLookAt(posX, posY + 0.025 * std::abs(sin(headPosAux*PI/180)),posZ,
-              posX + sin(roty*PI/180),posY + 0.025 * std::abs(sin(headPosAux*PI/180)) + cos(rotx*PI/180),posZ -cos(roty*PI/180),
-              0.0,1.0,0.0);
-    
-    /*listenerPos[0] = posX;
-     listenerPos[1] = posY;
-     listenerPos[2] = posZ;
-     
-     source0Pos[0] = posX;
-     source0Pos[1] = posY;
-     source0Pos[2] = posZ;*/
-}
+
 
 void setViewport(GLint left, GLint right, GLint bottom, GLint top) {
     glViewport(left, bottom, right - left, top - bottom);

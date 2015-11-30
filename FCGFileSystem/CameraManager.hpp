@@ -28,6 +28,7 @@ extern float rotx;
 
 extern float headPosAux;
 
+extern void updateCam();
 extern void moveCamera();
 //extern void jump();
 //extern void crawl();

@@ -31,8 +31,8 @@ extern int mouseLastY;
 
 //extern void onMouseButton(int button, int state, int x, int y);
 //extern void mainHandleMouseRightButtonMenuEvent(int option);
-//extern void onMouseMove(int x, int y);
-//extern void onMousePassiveMove(int x, int y);
+extern void onMouseMove(int x, int y);
+extern void onMousePassiveMove(int x, int y);
 
 extern void onKeyDown(unsigned char key, int x, int y);
 extern void onKeyUp(unsigned char key, int x, int y);

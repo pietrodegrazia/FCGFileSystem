@@ -172,9 +172,10 @@ void renderDirectory(int i){
 }
 
 void updateState() {
+    updateCam();
     moveCamera();
-//    rotateRight();
-//    rotateLeft();
+    rotateRight();
+    rotateLeft();
 //    jump();s
 //    crawl();
     goForward();
