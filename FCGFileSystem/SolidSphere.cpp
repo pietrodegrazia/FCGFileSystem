@@ -16,8 +16,6 @@
 #define MAX_SECTORS 50
 #define FILE_SPHERE_RADIUS 1
 
-// your framework of choice here
-
 class SolidSphere
 {
 protected:

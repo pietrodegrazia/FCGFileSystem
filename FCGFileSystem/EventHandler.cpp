@@ -23,18 +23,21 @@ float mouseMoveFactor = 1.0f;
 int mouseLastX = 0;
 int mouseLastY = 0;
 
-/**
- Mouse button event handler
- */
-void onMouseButton(int button, int state, int x, int y) {
-    //printf("onMouseButton button: %d \n", button);
-//    glutPostRedisplay();
+void registerEventHandlers(){
+    //    glutMouseFunc(onMouseButton);
+    //    glutMotionFunc(onMouseMove);
+    //    glutPassiveMotionFunc(onMousePassiveMove);
+    
+    glutKeyboardFunc(onKeyDown);
+    glutKeyboardUpFunc(onKeyUp);
+    
 }
 
 
-/**
- Handles events from the mouse right button menu
- */
+void onMouseButton(int button, int state, int x, int y) {
+//    glutPostRedisplay();
+}
+
 void mainHandleMouseRightButtonMenuEvent(int option) {
     switch (option) {
         case 1 :
@@ -45,10 +48,6 @@ void mainHandleMouseRightButtonMenuEvent(int option) {
     }
 }
 
-
-/**
-// Mouse move while button pressed event handler
-// */
 //void onMouseMove(int x, int y) {
 //    mouseLastX = x;
 //    mouseLastY = y;
@@ -56,18 +55,12 @@ void mainHandleMouseRightButtonMenuEvent(int option) {
 //    
 //    glutPostRedisplay();
 //}
-//
-///**
-// Mouse move with no button pressed event handler
-// */
+
 //void onMousePassiveMove(int x, int y) {
 //    mouseLastX = x;
 //    mouseLastY = y;
 //}
 
-/**
- Key press event handler
- */
 void onKeyDown(unsigned char key, int x, int y) {
     switch (key) {
         case 127:
@@ -81,10 +74,6 @@ void onKeyDown(unsigned char key, int x, int y) {
             break;
             
         case 119: //w
-            //            if (!upPressed) {
-            //				alSourcePlay(source[0]);
-            //PlaySound((LPCSTR) "..\\..\\Footsteps.wav", NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
-            //            }
             upPressed = true;
             break;
             
@@ -117,9 +106,6 @@ void onKeyDown(unsigned char key, int x, int y) {
     //glutPostRedisplay();
 }
 
-/**
- Key release event handler
- */
 void onKeyUp(unsigned char key, int x, int y) {
     switch (key) {
         case 127:
@@ -132,7 +118,6 @@ void onKeyUp(unsigned char key, int x, int y) {
             break;
         case 32:
             // the control to release space will be in the jump function
-            printAllInfo();
             spacePressed = false;
             break;
             

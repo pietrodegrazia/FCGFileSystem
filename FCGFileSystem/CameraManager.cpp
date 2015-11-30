@@ -28,13 +28,6 @@ float headPosAux = 2.0f;
 
 float maxSpeed = 1.0f;
 
-
-void printAllInfo(){
-    printf("\n\n ******INFO********\n");
-    printf("CURRENT DIR LIST\n");
-
-}
-
 void moveCamera(){
     // Deprecated in OS X 10.9
     windowXPos = glutGet(GLUT_WINDOW_X);
@@ -95,7 +88,7 @@ void moveLeft(){
         }
     }
     updateIndex();
-        glutPostRedisplay();
+    glutPostRedisplay();
 }
 
 void moveRight(){

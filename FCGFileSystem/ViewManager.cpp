@@ -1,13 +1,6 @@
-//
-//  ViewManager.cpp
-//  FCGFileSystem
-//
-//  Created by Pietro Degrazia on 11/24/15.
-//  Copyright © 2015 PietroHenrique. All rights reserved.
-//
-
 #include "ViewManager.hpp"
 #include "FileManager.hpp"
+
 char windowName[] = "FCG File System 2015";
 /**
  Screen dimensions
@@ -26,20 +19,26 @@ int mainWindowId = 0;
 int currentIndex = 0;
 
 int zero = 0;
+
 void handleEnterPressed(){
+    printf("\n************* ENTER PRESSED ****************\n");
     char* path = (char*)malloc(sizeof(char) * FILENAME_MAX);
     strcpy(path, getCurrentPathAppending(currentDirList[currentIndex].d_name));
+
+    printf("Selected: %s\n", path);
     
     int file = isFile(path);
     if (file == 1) {
-        printf("\nFILEEE\n");
+        printf("File: %s\n Index: %i", currentDirList[currentIndex].d_name, currentIndex);
     } else if (file == 0){
-        printf("\nDIR '%s' WITH INDEX = %i", currentDirList[currentIndex].d_name, currentIndex);
-        currentPathComponents.push_back(currentDirList[currentIndex].d_name);
-        currentDirList.clear();
+        printf("Directory: %s\n Index: %i", currentDirList[currentIndex].d_name, currentIndex);
+
+        char* newCmp = (char*)malloc(sizeof(char) * FILENAME_MAX);
+        strcpy(newCmp, currentDirList[currentIndex].d_name);
+        
+        currentPathComponents.push_back(newCmp);
         getFileListForPath();
         moveOriginOnAxisX();
-//        printf("%s", );
     }
     glutPostRedisplay();
 }
@@ -51,19 +50,13 @@ void handleBackspace(){
     glutPostRedisplay();
 }
 
-
-
-
-/**
- Glut idle funtion
- */
 void mainIdle() {
     /**
      Set the active window before send an glutPostRedisplay call
      so it wont be accidently sent to the glui window
      */
     glutSetWindow(mainWindowId);
-    glutPostRedisplay();
+//    glutPostRedisplay();
 }
 
 /**
@@ -75,10 +68,6 @@ void mainCreateMenu() {
     glutAttachMenu(GLUT_RIGHT_BUTTON);
 }
 
-
-/**
- Initialize
- */
 void mainInit() {
     glClearColor(1.0,1.0,1.0,0.0);
     glColor3f(0.0f,0.0f,0.0f);
@@ -88,14 +77,7 @@ void mainInit() {
     //	initSound();
     
     initTexture();
-    
-    printf("w - go forward \n");
-    printf("s - go backward \n");
-    printf("mouse - look around \n");
 }
-
-
-
 
 void setWindow() {
     //roty = 0.0f;
@@ -110,9 +92,6 @@ void setWindow() {
               0.0,1.0,0.0);
 }
 
-/**
- Atualiza a posiÁ„o e orientaÁ„o da camera
- */
 void updateCam() {
     gluLookAt(posX, posY + 0.025 * std::abs(sin(headPosAux*PI/180)),posZ,
               posX + sin(roty*PI/180),posY + 0.025 * std::abs(sin(headPosAux*PI/180)) + cos(rotx*PI/180),posZ -cos(roty*PI/180),
@@ -131,10 +110,6 @@ void setViewport(GLint left, GLint right, GLint bottom, GLint top) {
     glViewport(left, bottom, right - left, top - bottom);
 }
 
-
-
-
-
 void onWindowReshape(int x, int y) {
     windowWidth = x;
     windowHeight = y;
@@ -143,7 +118,6 @@ void onWindowReshape(int x, int y) {
         glutPostRedisplay();
 }
 
-
 void renderScene() {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -151,4 +125,3 @@ void renderScene() {
     renderFloor();
     renderFileList();
 }
-

@@ -67,37 +67,19 @@ int main(int argc, char **argv) {
     
     getFileListForPath();
     
-    printf("FOI\n");
-    for ( int i = 0; i < currentDirList.size(); i++) {
-        printf("%s\n", currentDirList[i].d_name);
-    }
-    
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
     glutInitWindowSize(windowWidth,windowHeight);
     glutInitWindowPosition(windowXPos,windowYPos);
     
-    /**
-     Store main window id so that glui can send it redisplay events
-     */
     mainWindowId = glutCreateWindow(windowName);
     glutDisplayFunc(mainRender);
     glutReshapeFunc(onWindowReshape);
-    /**
-     Register mouse events handlers
-     */
-//    glutMouseFunc(onMouseButton);
-//    glutMotionFunc(onMouseMove);
-//    glutPassiveMotionFunc(onMousePassiveMove);
     
-    /**
-     Register keyboard events handlers
-     */
-    glutKeyboardFunc(onKeyDown);
-    glutKeyboardUpFunc(onKeyUp);
+    registerEventHandlers();
     
     mainInit();
-//    lightInit();
+    lightInit();
     
     /**
      Create GLUT mouse button menus

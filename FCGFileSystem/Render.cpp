@@ -129,14 +129,17 @@ void renderFloor() {
 
 
 void renderFileList(){
-//    printf("\n-- Rendering File List --\n") ;
+    printf("\n*****************Rendering File List**********************\n");
+    
     char* path = (char*)malloc(sizeof(char)*FILENAME_MAX);
     
-    printf("%s\n\t", getCurrentPathAppending(""));
+    printf("Current Path: %s\n", getCurrentPathAppending(""));
+    
+    printf("Current Directory List \n");
     for ( int i = 0; i < currentDirList.size(); i++) {
-
+        
         strcpy(path, getCurrentPathAppending(currentDirList[i].d_name));
-        printf("%s, ", currentDirList[i].d_name);
+        printf("%i - %s - ",i , currentDirList[i].d_name);
 //        printf("\t%s\n", currentDirList[i].d_name);
         int file = isFile(path);
 //        printf("%s\n\n\n\n", path);
@@ -144,15 +147,18 @@ void renderFileList(){
 //        glTranslatef(PADDING,0,0);
         if (file == 1) {
 //            printf("\nFILE\n");
+            printf("File\n");
             renderFile(i);
         } else if (file==0){
-//            printf("\nDirectory\n");
+            printf("Directory\n");
             renderDirectory(i);
+        } else {
+            printf("Desconhecido\n");
         }
         
 //        printf("%s\n", path);
     }
-    printf("\n");
+    printf("\n________________________________________________________\n");
 }
 
 float initialX = 0;

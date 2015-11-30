@@ -22,7 +22,7 @@ using namespace std;
 #define kRootFolder "/Users/pietrodegrazia/Documents/UFRGS/FCG/FCGFileSystem/FCGFileSystem/DirA"
 
 
-extern char* getCurrentPathAppending(char* component);
+extern char* getCurrentPathAppending(const char* component);
 extern int isFile(const char* name);
 extern char* getCurrentPath();
 extern void getFileListForPath();
