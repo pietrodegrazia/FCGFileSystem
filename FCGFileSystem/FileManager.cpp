@@ -43,7 +43,7 @@ char* getCurrentPath(){
         strcat(path, "/");
     }
     printf("\nFull Path: %s", path);
-            printf("\n-----------------------------------------------------------\n");
+    printf("\n-----------------------------------------------------------\n");
     return path;
 }
 

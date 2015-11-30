@@ -32,7 +32,8 @@ GLuint      texture;         /* Texture object */
 void initTexture(void){
     printf ("Loading texture..\n");
     // Load a texture object (256x256 true color)
-    bits = LoadDIBitmap("/Users/valcanaia/Documents/UFRGS/2015-2/FCG/Pratica/Exercise_x3/FPS/res/tiledbronze.bmp", &info);
+//    bits = LoadDIBitmap("/Users/valcanaia/Documents/UFRGS/2015-2/FCG/Pratica/Exercise_x3/FPS/res/tiledbronze.bmp", &info);
+    bits = LoadDIBitmap("/Users/valcanaia/Documents/UFRGS/2015-2/FCG/Trabalho Final/FCGFileSystem/FCGFileSystem/circuit.bmp", &info);
     if (bits == (GLubyte *)0) {
         printf ("Error loading texture!\n\n");
         return;
