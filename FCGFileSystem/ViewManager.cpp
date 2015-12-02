@@ -47,9 +47,10 @@ void handleEnterPressed(){
         
         currentPathComponents.push_back(newCmp);
         getFileListForPath();
+        renderFileListWithDepth();
         moveOriginOnAxisX();
     }
-    glutPostRedisplay();
+//    glutPostRedisplay();
 }
 
 void handleBackspace(){
@@ -57,7 +58,7 @@ void handleBackspace(){
         currentPathComponents.pop_back();
         currentDirList.clear();
         getFileListForPath();
-        glutPostRedisplay();
+//        glutPostRedisplay();
     }
 }
 
@@ -86,8 +87,8 @@ void mainInit() {
     setViewport(0, windowWidth, 0, windowHeight);
     
     //	initSound();
-    
     initTexture();
+    
 }
 
 void setWindow() {
@@ -120,7 +121,9 @@ void onWindowReshape(int x, int y) {
 void renderScene() {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+
     updateCam();
     renderFloor();
-    renderFileList();
+//    renderFileList();
+//    renderFileListWithDepth();
 }

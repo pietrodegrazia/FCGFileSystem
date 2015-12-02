@@ -19,14 +19,16 @@
 
 using namespace std;
 
-#define kRootFolder "/Users/pietrodegrazia/Documents/UFRGS/FCG/FCGFileSystem 2/FCGFileSystem/DirA"
-
+#define kRootFolder "/Users/pietrodegrazia/Documents/UFRGS/FCG/FCGFileSystem/FCGFileSystem/DirA"
 
 extern char* getCurrentPathAppending(const char* component);
 extern int isFile(const char* name);
 extern char* getCurrentPath();
 extern void getFileListForPath();
+extern char* getPathForComponentSizeIndex(int depth);
+extern void getAuxiliarFileListForDepth(int depth);
 
+extern vector<dirent> auxDirList;
 extern vector<dirent> currentDirList;
 extern vector<char*> currentPathComponents;
 

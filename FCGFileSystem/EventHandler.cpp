@@ -50,13 +50,18 @@ void onMouseMove(int x, int y) {
     mouseLastX = x;
     mouseLastY = y;
     //    printf("%d, %d\n", x, y);
-    
-    glutPostRedisplay();
+//    updateCam();
+//    glutPostRedisplay();
+    renderScene();
 }
 
 void onMousePassiveMove(int x, int y) {
     mouseLastX = x;
     mouseLastY = y;
+//    updateCam();
+//        glutPostRedisplay();
+//        glutPostRedisplay();
+    renderScene();
 }
 
 void onKeyDown(unsigned char key, int x, int y) {
@@ -64,9 +69,11 @@ void onKeyDown(unsigned char key, int x, int y) {
     switch (key) {
         case 113: //q
             updateIndex(false);
+                glutPostRedisplay();
             break;
         case 101: // e
             updateIndex(true);
+                glutPostRedisplay();
             break;
         case 127:
             backspacePressed = true;

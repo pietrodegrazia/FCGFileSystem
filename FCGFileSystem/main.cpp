@@ -81,15 +81,23 @@ int main(int argc, char **argv) {
     mainInit();
     lightInit();
     
+
     /**
      Create GLUT mouse button menus
      */
     //        mainCreateMenu();
-    
+//    char* path = (char*)malloc(sizeof(char)*FILENAME_MAX);
+//    strcpy(path, "DirAB");
+//    currentPathComponents.push_back(path);
+
     glutMainLoop();
+//    while (1) {
+//        updateState();
+//        renderScene();
+//        glFlush();
+//    }
     
     return 0;
-    
 }
 
 

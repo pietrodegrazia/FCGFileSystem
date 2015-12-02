@@ -32,7 +32,7 @@ GLuint      texture;         /* Texture object */
 void initTexture(void){
     printf ("Loading texture..\n");
     // Load a texture object (256x256 true color)
-//    bits = LoadDIBitmap("/Users/valcanaia/Documents/UFRGS/2015-2/FCG/Pratica/Exercise_x3/FPS/res/tiledbronze.bmp", &info);
+    //    bits = LoadDIBitmap("/Users/valcanaia/Documents/UFRGS/2015-2/FCG/Pratica/Exercise_x3/FPS/res/tiledbronze.bmp", &info);
     bits = LoadDIBitmap("/Users/pietrodegrazia/Documents/UFRGS/FCG/FCGFileSystem 2/FCGFileSystem/circuit.bmp", &info);
     if (bits == (GLubyte *)0) {
         printf ("Error loading texture!\n\n");
@@ -129,38 +129,51 @@ void renderFloor() {
 }
 
 bool selected = false;
+
 void renderFileList(){
-    printf("\n*****************Rendering File List**********************\n");
-    
     char* path = (char*)malloc(sizeof(char)*FILENAME_MAX);
     
-    printf("Current Path: %s\n", getCurrentPathAppending(""));
-    
-    printf("Current Directory List \n");
     for ( int i = 0; i < currentDirList.size(); i++) {
-        
         strcpy(path, getCurrentPathAppending(currentDirList[i].d_name));
-        printf("%i - %s - ",i , currentDirList[i].d_name);
-//        printf("\t%s\n", currentDirList[i].d_name);
         int file = isFile(path);
-//        printf("%s\n\n\n\n", path);
         selected = i == currentIndex ? true : false;
-//        glTranslatef(PADDING,0,0);
+        int depth = currentPathComponents.size();
         if (file == 1) {
-//            printf("\nFILE\n");
-            printf("File\n");
-            renderFile(i);
+            renderFileAtDepth(i, depth);
         } else if (file==0){
-            printf("Directory\n");
-            renderDirectory(i);
+            renderDirectoryAtDepth(i,depth);
         } else {
             printf("Desconhecido\n");
         }
-        
-//        printf("%s\n", path);
     }
-    printf("\n________________________________________________________\n");
 }
+
+void renderFileListWithDepth(){
+    char* path = (char*)malloc(sizeof(char)*FILENAME_MAX);
+    
+    for ( int depth = 0; depth <= currentPathComponents.size(); depth++) {
+        
+        getAuxiliarFileListForDepth(depth);
+        strcpy(path, getPathForComponentSizeIndex(depth));
+
+        for (int index = 0; index < auxDirList.size(); index++){
+            strcat(path, "/");
+            strcat(path, auxDirList[index].d_name);
+            
+            int file = isFile(path);
+            selected = i == currentIndex ? true : false;
+            if (file == 1) {
+                renderFileAtDepth(index,depth);
+            } else if (file==0){
+                renderDirectoryAtDepth(index,depth);
+            } else {
+                printf("Desconhecido\n");
+            }
+        }
+    }//end depth
+    printf("Depth");
+}
+
 
 float initialX = 0;
 void renderFile(int i){
@@ -172,6 +185,16 @@ void renderDirectory(int i){
     drawCube(PADDING*i, 0,0,selected);
 }
 
+
+void renderFileAtDepth(int i, int depth){
+    SolidSphere s = SolidSphere(FILE_SPHERE_RADIUS, MAX_RINGS ,MAX_SECTORS);
+    s.draw(PADDING*i, 0, PADDING*depth,selected);
+}
+
+void renderDirectoryAtDepth(int i, int depth){
+    drawCube(PADDING*i, 0,PADDING*depth,selected);
+}
+
 void updateState() {
     updateCam();
 }
@@ -180,8 +203,9 @@ void updateState() {
  Render scene
  */
 void mainRender() {
-    updateState();
+//    updateState();
     renderScene();
+    renderFileListWithDepth();
     glFlush();
-
+    
 }

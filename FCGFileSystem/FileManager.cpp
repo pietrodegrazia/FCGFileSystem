@@ -9,6 +9,7 @@
 #include "FileManager.hpp"
 
 vector<dirent> currentDirList;
+vector<dirent> auxDirList;
 vector<char*> currentPathComponents;
 
 int isFile(const char* name){
@@ -46,7 +47,6 @@ char* getCurrentPath(){
     printf("\n-----------------------------------------------------------\n");
     return path;
 }
-
 
 char* getCurrentPathAppending(const char* component){
     char* dirpath = (char*)malloc(sizeof(char) * FILENAME_MAX);
@@ -99,3 +99,41 @@ void getFileListForPath(){
         perror ("\nˆˆˆˆˆˆˆCOULD NOT OPEN DIRECTORYˆˆˆˆˆˆˆˆˆ\n");
     }
 }
+
+void getAuxiliarFileListForDepth(int depth){
+    auxDirList.clear();
+
+    char* dirpath = (char*)malloc(sizeof(char) * FILENAME_MAX);
+    strcpy(dirpath, getPathForComponentSizeIndex(depth));
+    DIR *dir;
+    struct dirent *ent;
+    
+    if ((dir = opendir(dirpath)) != NULL) {
+        while ((ent = readdir (dir)) != NULL) {
+            if (strcmp(ent->d_name, "..") && strcmp(ent->d_name, ".")) {
+                auxDirList.push_back(*ent);
+            }
+        }
+        closedir (dir);
+    } else {
+        perror ("\nˆˆˆˆˆˆˆCOULD NOT OPEN DIRECTORYˆˆˆˆˆˆˆˆˆ\n");
+    }
+}
+
+
+char* getPathForComponentSizeIndex(int depth){
+    
+    int multiplicador = depth == 0 ? 1 : depth;
+    
+    char* path = (char*)malloc(sizeof(char)*FILENAME_MAX*multiplicador);
+    strcpy(path, kRootFolder);
+    if (depth > 0){
+        strcat(path, "/");
+        for (int index = 0 ;index < depth; index++){
+            strcat(path, currentPathComponents[index]);
+            strcat(path, "/");
+        }
+    }
+    return path;
+}
+

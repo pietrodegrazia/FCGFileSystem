@@ -19,8 +19,10 @@
 
 extern void renderFile(int i);
 extern void updateState();
+extern void renderFileListWithDepth();
 extern void mainRender();
 extern void renderDirectory(int i);
-
+extern void renderFileAtDepth(int i, int depth);
+extern void renderDirectoryAtDepth(int i, int depth);
 
 #endif /* Render_hpp */

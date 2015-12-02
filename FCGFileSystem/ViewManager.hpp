@@ -14,6 +14,7 @@
 #include "bitmap.h"
 #include <GLUT/glut.h>
 #include "CameraManager.hpp"
+#include "Render.hpp"
 #include <math.h>
 #include <cmath>
 
@@ -37,6 +38,7 @@ extern void setViewport(GLint left, GLint right, GLint bottom, GLint top);
 extern void initTexture(void);
 extern void renderFloor();
 extern void renderFileList();
+
 extern void renderScene();
 extern void onWindowReshape(int x, int y);
 extern void mainCreateMenu();

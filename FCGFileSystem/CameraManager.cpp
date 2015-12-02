@@ -39,7 +39,7 @@ bool isJumpingDown = false;
 float jumpSideFactor = 0.000001;
 
 void updateCam() {
-    gluLookAt(posX, posY + 0.025 * std::abs(sin(headPosAux*PI/180)),posZ,
+   gluLookAt(posX, posY + 0.025 * std::abs(sin(headPosAux*PI/180)),posZ,
               posX + sin(roty*PI/180),posY + 0.025 * std::abs(sin(headPosAux*PI/180)) + cos(rotx*PI/180),posZ -cos(roty*PI/180),
               0.0,1.0,0.0);
     moveCamera();
