@@ -28,6 +28,14 @@ void updateIndex(bool increment){
     }
 }
 
+void openFile(char* filePath){
+    char* command = (char*)malloc(sizeof(char)*FILENAME_MAX);
+    strcpy(command, "open '");
+    strcat(command, filePath);
+    strcat(command, "'");
+//    printf(command);
+    system(command);
+}
 
 void handleEnterPressed(){
     printf("\n************* ENTER PRESSED ****************\n");
@@ -39,6 +47,7 @@ void handleEnterPressed(){
     int file = isFile(path);
     if (file == 1) {
         printf("File: %s\n Index: %i", currentDirList[currentIndex].d_name, currentIndex);
+        openFile(path);
     } else if (file == 0){
         printf("Directory: %s\n Index: %i", currentDirList[currentIndex].d_name, currentIndex);
 

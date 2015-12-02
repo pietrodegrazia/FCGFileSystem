@@ -38,14 +38,38 @@ bool isJumpingUp = false;
 bool isJumpingDown = false;
 float jumpSideFactor = 0.000001;
 
+float changex = 0.0;
+float changey = 0.0;
+bool warped = false;
+
 void updateCam() {
+    changex = mouseLastX - windowWidth/2;
+    changey = mouseLastY - windowHeight/2;
+    
+    if(!warped && (changex || changey)) {
+        changex = mouseLastX - windowWidth/2;
+        changey = mouseLastY - windowHeight/2;
+        
+        //keep camera from rotating beyond vertically up/down
+        if(rotx>=-90 && changey < 0){
+            rotx += 0.25f*changey;
+        }else if(rotx<=90 && changey > 0){
+            rotx += 0.25f*changey;
+        }
+        
+        roty += 0.25f*changex;
+        warped = true;
+        glutWarpPointer(windowWidth/2, windowHeight/2);
+    }else{
+        warped = false;
+    }
+    
     gluLookAt(posX, posY + 0.025 * std::abs(sin(headPosAux*PI/180)),posZ,
               posX + sin(roty*PI/180),posY + 0.025 * std::abs(sin(headPosAux*PI/180)) + cos(rotx*PI/180),posZ -cos(roty*PI/180),
               0.0,1.0,0.0);
     moveCamera();
     goForward();
     goBackwards();
-
 }
 
 void moveCamera(){

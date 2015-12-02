@@ -41,8 +41,7 @@ using namespace std;
 
 
 int main(int argc, char **argv);
-void lightInit(void)
-{
+void lightInit(void){
     GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
     GLfloat mat_shininess[] = { 50.0 };
     GLfloat light_position[] = { 1.0, 1.0, -1.0, 0.0 };
@@ -80,6 +79,10 @@ int main(int argc, char **argv) {
     
     mainInit();
     lightInit();
+    
+    glutSetCursor(GLUT_CURSOR_NONE); // hide mouse
+    
+    
     
     /**
      Create GLUT mouse button menus
