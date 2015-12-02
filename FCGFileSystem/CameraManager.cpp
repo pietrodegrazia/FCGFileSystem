@@ -114,7 +114,7 @@ void moveRight(){
 //void rotateLeft(){
 //    if (leftPressed) {
 //        roty -= 4.0f;
-////    }
+////    }   
 //}
 //void rotateRight(){
 //    if (rightPressed) {
