@@ -45,4 +45,8 @@ extern void handleEnterPressed();
 extern void handleBackspace();
 extern int currentIndex;
 extern void updateIndex(bool increment);
+//extern void write(std::string text, int x, int y);
+extern void writeText(int x, int y, int z, char *string);
+
+
 #endif /* ViewManager_hpp */

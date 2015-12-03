@@ -20,6 +20,53 @@ int currentIndex = 0;
 
 int zero = 0;
 
+void writeText(int x, int y,int z, char *string){
+    
+    //TEXT
+    glMatrixMode( GL_PROJECTION ) ;
+    glPushMatrix() ; // save
+    glLoadIdentity();// and clear
+    glMatrixMode( GL_MODELVIEW ) ;
+    glPushMatrix() ;
+    glLoadIdentity() ;
+    
+    glDisable( GL_DEPTH_TEST ) ; // also disable the depth test so renders on top
+    glDisable(GL_LIGHTING); // no lights
+    
+    glRasterPos2f(-1, -1); // center of screen. (-1,0) is center left.
+    glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
+    char buf[300];
+    sprintf( buf, "Oh hello" );
+    const char * p = buf;
+    do glutBitmapCharacter( GLUT_BITMAP_HELVETICA_18, *p ); while( *(++p) );
+    
+    glEnable( GL_DEPTH_TEST ) ; // Turn depth testing back on
+    glEnable(GL_LIGHTING); // no lights
+    
+    glMatrixMode( GL_PROJECTION ) ;
+    glPopMatrix() ; // revert back to the matrix I had before.
+    glMatrixMode( GL_MODELVIEW ) ;
+    glPopMatrix() ;
+    
+//    //set the position of the text in the window using the x and y coordinates
+//    glRasterPos2f(x,y);
+//    //get the length of the string to display
+//    int len = (int) strlen(string);
+//    
+//    //loop to display character by character
+//    for (int i = 0; i < len; i++){
+//        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, string[i]);
+//    }
+}
+
+void write(string text, int x, int y){
+    glRasterPos2i(x,y);
+    
+    for(int i = 0; i < text.length(); i++){
+        glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, text.data()[i]);
+    }
+}
+
 void updateIndex(bool increment){
     if (increment && (currentIndex+1 < currentDirList.size() ) ) {
         currentIndex++;

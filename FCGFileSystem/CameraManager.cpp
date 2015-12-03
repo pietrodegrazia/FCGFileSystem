@@ -51,9 +51,9 @@ void updateCam() {
         changey = mouseLastY - windowHeight/2;
         
         //keep camera from rotating beyond vertically up/down
-        if(rotx>=-90 && changey < 0){
+        if(rotx >= -90 && changey < 0){
             rotx += 0.25f*changey;
-        }else if(rotx<=90 && changey > 0){
+        }else if(rotx <= 90 && changey > 0){
             rotx += 0.25f*changey;
         }
         

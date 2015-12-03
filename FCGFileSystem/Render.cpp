@@ -181,6 +181,11 @@ void updateState() {
  Render scene
  */
 void mainRender() {
+    char* txt = (char*)malloc(10);
+    strcpy(txt, "miauzao");
+    writeText(0, 0, 0, txt);
+
+    
     updateState();
     renderScene();
     glFlush();
