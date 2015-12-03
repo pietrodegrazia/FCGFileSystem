@@ -131,46 +131,42 @@ void renderFloor() {
 
 bool selected = false;
 void renderFileList(){
-    printf("\n*****************Rendering File List**********************\n");
+    char* depthPath = (char*)malloc(sizeof(char)*FILENAME_MAX);
+    strcpy(depthPath, kRootFolder);
     
-    char* path = (char*)malloc(sizeof(char)*FILENAME_MAX);
-    
-    printf("Current Path: %s\n", getCurrentPathAppending(""));
-    
-    printf("Current Directory List \n");
-    for ( int i = 0; i < currentDirList.size(); i++) {
-        
-        strcpy(path, getCurrentPathAppending(currentDirList[i].d_name));
-        printf("%i - %s - ",i , currentDirList[i].d_name);
-//        printf("\t%s\n", currentDirList[i].d_name);
-        int file = isFile(path);
-//        printf("%s\n\n\n\n", path);
-        selected = i == currentIndex ? true : false;
-//        glTranslatef(PADDING,0,0);
-        if (file == 1) {
-//            printf("\nFILE\n");
-            printf("File\n");
-            renderFile(i);
-        } else if (file==0){
-            printf("Directory\n");
-            renderDirectory(i);
-        } else {
-            printf("Desconhecido\n");
+    for (int depth = 0; depth < fileSystem.size(); depth++){
+        if(depth>0){
+            strcat(depthPath, "/");
+            strcat(depthPath, currentPathComponents[depth-1]);
         }
         
-//        printf("%s\n", path);
+        for(int index = 0; index < fileSystem[depth].size(); index++){
+            char* indexPath = (char*)malloc(sizeof(char)*FILENAME_MAX);
+            strcpy(indexPath, depthPath);
+            strcat(indexPath, "/");
+            strcat(indexPath, fileSystem[depth][index].d_name);
+            
+            int file = direntIsFile(fileSystem[depth][index]);
+            selected = index == fileIndex[depth] ? true : false;
+            if (file == 1) {
+                renderFile(index, depth);
+            } else if (file==0){
+                renderDirectory(index, depth);
+            } else {
+                printf("Desconhecido\n");
+            }
+
+        }
     }
-    printf("\n________________________________________________________\n");
 }
 
 float initialX = 0;
-void renderFile(int i){
-    SolidSphere s = SolidSphere(FILE_SPHERE_RADIUS, MAX_RINGS ,MAX_SECTORS);
-    s.draw(PADDING*i, 0, 0,selected);
+void renderFile(int index, int depth){
+    drawSphere(PADDING*index, 0,  -(PADDING*5*depth)+1, selected);
 }
 
-void renderDirectory(int i){
-    drawCube(PADDING*i, 0,0,selected);
+void renderDirectory(int index, int depth){
+    drawCube(PADDING*index, 0, -(PADDING*5*depth)+1,selected);
 }
 
 void updateState() {
@@ -191,3 +187,34 @@ void mainRender() {
     glFlush();
 
 }
+
+
+//
+//void renderFile(int i){
+//    SolidSphere s = SolidSphere(FILE_SPHERE_RADIUS, MAX_RINGS ,MAX_SECTORS);
+//    s.draw(PADDING*i, 0, 0,selected);
+//}
+//
+//void renderDirectory(int i){
+//    drawCube(PADDING*i, 0,0,selected);
+//}
+
+
+
+
+//
+//void renderFileList(){
+//    char* path = (char*)malloc(sizeof(char)*FILENAME_MAX);
+//    for ( int i = 0; i < currentDirList.size(); i++) {
+//        strcpy(path, getCurrentPathAppending(currentDirList[i].d_name));
+//        int file = isFile(path);
+//        selected = i == currentIndex ? true : false;
+//        if (file == 1) {
+//            renderFile(i);
+//        } else if (file==0){
+//            renderDirectory(i);
+//        } else {
+//            printf("Desconhecido\n");
+//        }
+//    }
+//}

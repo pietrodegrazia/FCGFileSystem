@@ -79,10 +79,12 @@ void onKeyDown(unsigned char key, int x, int y) {
             break;
             
         case 119: //w
+            glutPostRedisplay();
             upPressed = true;
             break;
             
         case 115: //s
+                        glutPostRedisplay();
             downPressed = true;
             break;
             
@@ -107,9 +109,6 @@ void onKeyDown(unsigned char key, int x, int y) {
         default:
             break;
     }
-    
-    glutPostRedisplay();
-    printf("\nKEY PRESSED - %i", key);
 }
 
 void onKeyUp(unsigned char key, int x, int y) {
@@ -162,6 +161,4 @@ void onKeyUp(unsigned char key, int x, int y) {
         default:
             break;
     }
-    
-    glutPostRedisplay();
 }

@@ -18,7 +18,7 @@
 #define MAX_SECTORS 50
 #define FILE_SPHERE_RADIUS 1
 
-
 extern void drawCube(GLfloat x, GLfloat y, GLfloat z, bool shouldHighlight);
 
+extern void drawSphere(GLfloat x, GLfloat y, GLfloat z, bool shouldHighlight);
 #endif /* Cube_hpp */

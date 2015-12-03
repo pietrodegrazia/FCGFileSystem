@@ -17,19 +17,21 @@
 #include <string>
 #include <errno.h>
 
+
 using namespace std;
 
-//#define kRootFolder "/Users/pietrodegrazia/Documents/UFRGS/FCG/FCGFileSystem 2/FCGFileSystem/DirA"
-#define kRootFolder "/Users/valcanaia/Documents/UFRGS/2015-2/FCG/Trabalho Final/FCGFileSystem/FCGFileSystem/DirA"
-
+#define kRootFolder "/Users/pietrodegrazia/Documents/UFRGS/FCG/FCGFileSystem/FCGFileSystem/DirA"
 
 
 extern char* getCurrentPathAppending(const char* component);
-extern int isFile(const char* name);
 extern char* getCurrentPath();
 extern void getFileListForPath();
+extern int direntIsFile(dirent dir);
 
 extern vector<dirent> currentDirList;
 extern vector<char*> currentPathComponents;
+extern vector < vector<dirent> > fileSystem;
+extern vector<int> fileIndex;
+
 
 #endif /* FileManager_hpp */
