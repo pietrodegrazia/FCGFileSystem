@@ -9,29 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FCGFileSystem/SolidSphere.cpp"
-            timestampString = "470086728.818927"
+            filePath = "FCGFileSystem/ViewManager.cpp"
+            timestampString = "470800818.506908"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "draw(GLfloat x, GLfloat y, GLfloat z,bool shouldHighlight)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FCGFileSystem/EventHandler.cpp"
-            timestampString = "470619995.132477"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "onKeyUp(unsigned char key, int x, int y)"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "updateIndex(bool increment)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,13 +26,35 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FCGFileSystem/FileManager.cpp"
-            timestampString = "470520922.663626"
+            timestampString = "470800818.506908"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "getCurrentPath()"
-            landmarkType = "7">
+            startingLineNumber = "146"
+            endingLineNumber = "146">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FCGFileSystem/Render.cpp"
+            timestampString = "470800818.506908"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "236"
+            endingLineNumber = "236">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -58,12 +64,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FCGFileSystem/FileManager.cpp"
-            timestampString = "470520922.663626"
+            timestampString = "470800818.506908"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "getCurrentPath()"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "getFileListForPath()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,13 +79,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FCGFileSystem/FileManager.cpp"
-            timestampString = "470096241.765746"
+            filePath = "FCGFileSystem/Render.cpp"
+            timestampString = "470795545.462278"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "isFile(const char* name)"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "renderFileList()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -89,13 +95,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FCGFileSystem/FileManager.cpp"
-            timestampString = "470521042.57077"
+            filePath = "FCGFileSystem/Render.cpp"
+            timestampString = "470795414.793466"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "getCurrentPath()"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "renderFileList()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FCGFileSystem/ViewManager.cpp"
+            timestampString = "470800818.506908"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "handleBackspace()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -105,13 +127,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FCGFileSystem/EventHandler.cpp"
-            timestampString = "470619951.418299"
+            filePath = "FCGFileSystem/Render.cpp"
+            timestampString = "470798372.580794"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "onKeyDown(unsigned char key, int x, int y)"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "renderFileList()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -122,7 +144,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FCGFileSystem/ViewManager.cpp"
-            timestampString = "470620088.964925"
+            timestampString = "470800879.77274"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "24"

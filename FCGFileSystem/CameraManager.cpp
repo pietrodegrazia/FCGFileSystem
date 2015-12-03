@@ -90,26 +90,26 @@ void moveCamera(){
         }
 }
 void moveOriginOnAxisX(){
-    posX = 0;
+//    posX = 0;
 }
 void moveLeft(){
-    float newPosition = posX - PADDING;
-    if(newPosition >= 0){
-        while (posX > newPosition) {
-            posX -= jumpSideFactor;
-        }
-    }
-    glutPostRedisplay();
+//    float newPosition = posX - PADDING;
+//    if(newPosition >= 0){
+//        while (posX > newPosition) {
+//            posX -= jumpSideFactor;
+//        }
+//    }
+//    glutPostRedisplay();
 }
 void moveRight(){
-    float maxPosition = currentDirList.size() * PADDING;
-    float newPosition = posX + PADDING;
-    if (newPosition < maxPosition) {
-        while (posX < newPosition) {
-            posX += jumpSideFactor;
-        }
-    }
-    glutPostRedisplay();
+//    float maxPosition = currentDirList.size() * PADDING;
+//    float newPosition = posX + PADDING;
+//    if (newPosition < maxPosition) {
+//        while (posX < newPosition) {
+//            posX += jumpSideFactor;
+//        }
+//    }
+//    glutPostRedisplay();
 }
 //void rotateLeft(){
 //    if (leftPressed) {

@@ -17,10 +17,9 @@
 #include "Cube.hpp"
 #include "Constants.h"
 
-extern void renderFile(int i);
+extern void renderDirectory(int index, int depth);
 extern void updateState();
 extern void mainRender();
-extern void renderDirectory(int i);
-
+extern void renderFile(int index, int depth);
 
 #endif /* Render_hpp */

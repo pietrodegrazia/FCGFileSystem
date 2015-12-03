@@ -4,10 +4,13 @@
 //
 //  Created by Pietro Degrazia on 11/24/15.
 //  Copyright © 2015 PietroHenrique. All rights reserved.
-//
+//glutSolidSphere(GLdouble radius, GLint slices, GLint stacks)
 
 #include "Cube.hpp"
 
+#define MAX_RINGS 1000
+#define MAX_SECTORS 50
+#define FILE_SPHERE_RADIUS 1
 
 void drawCube(GLfloat x, GLfloat y, GLfloat z, bool shouldHighlight){
 //    printf("\n CUBO = X: %f\n",x);
@@ -15,7 +18,6 @@ void drawCube(GLfloat x, GLfloat y, GLfloat z, bool shouldHighlight){
     glPushMatrix();
     glTranslatef(x,y,z);
 
-    
     glBegin(GL_QUADS);
     
     if (shouldHighlight) {
@@ -88,4 +90,21 @@ void drawCube(GLfloat x, GLfloat y, GLfloat z, bool shouldHighlight){
     
 }
 
+void drawSphere(GLfloat x, GLfloat y, GLfloat z, bool shouldHighlight){
+   
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(x,y,z);
+    
+    if (shouldHighlight) {
+        glColor3f(0.5f, 1.0f, 0.0f);
+    } else {
+        glColor3f(1.0f, 1.0f, 1.0f);
+    }
+    
+    glutSolidSphere(FILE_SPHERE_RADIUS ,MAX_SECTORS , MAX_RINGS);
+    
+    glPopMatrix();
+    
+}
 

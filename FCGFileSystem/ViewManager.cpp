@@ -16,34 +16,37 @@ int windowYPos = 150;
 int mainWindowId = 0;
 
 
-int currentIndex = 0;
 
 int zero = 0;
 
 void updateIndex(bool increment){
-    if (increment && (currentIndex+1 < currentDirList.size() ) ) {
-        currentIndex++;
+    int depth = fileSystem.size() -1;
+    int currentIndex = fileIndex[depth];
+    if (increment && (currentIndex+1 < fileSystem[depth].size() ) ) {
+        fileIndex[depth] = currentIndex + 1;
+        glutPostRedisplay();
     } else if( !(increment) && ( currentIndex-1 >= 0 ) ){
-        currentIndex--;
+        fileIndex[depth] = currentIndex - 1;
+        glutPostRedisplay();
     }
+
+//    printf(" \n\n ATUAl: %s\n   Index: %i", fileSystem[depth][currentIndex].d_name, currentIndex);
+    
 }
 
 
 void handleEnterPressed(){
     printf("\n************* ENTER PRESSED ****************\n");
-    char* path = (char*)malloc(sizeof(char) * FILENAME_MAX);
-    strcpy(path, getCurrentPathAppending(currentDirList[currentIndex].d_name));
-
-    printf("Selected: %s\n", path);
-    
-    int file = isFile(path);
+    int depth = fileSystem.size()-1;
+    int currentIndex = fileIndex[depth];
+    int file = direntIsFile(fileSystem[depth][currentIndex]);
     if (file == 1) {
-        printf("File: %s\n Index: %i", currentDirList[currentIndex].d_name, currentIndex);
+        printf("  File: %s\n   Index: %i", fileSystem[currentPathComponents.size()][currentIndex].d_name, currentIndex);
     } else if (file == 0){
-        printf("Directory: %s\n Index: %i", currentDirList[currentIndex].d_name, currentIndex);
+        printf("  Directory: %s\n   Index: %i", fileSystem[currentPathComponents.size()][currentIndex].d_name, currentIndex);
 
         char* newCmp = (char*)malloc(sizeof(char) * FILENAME_MAX);
-        strcpy(newCmp, currentDirList[currentIndex].d_name);
+        strcpy(newCmp, fileSystem[currentPathComponents.size()][currentIndex].d_name);
         
         currentPathComponents.push_back(newCmp);
         getFileListForPath();
@@ -55,19 +58,15 @@ void handleEnterPressed(){
 void handleBackspace(){
     if(currentPathComponents.size() > 0){
         currentPathComponents.pop_back();
-        currentDirList.clear();
-        getFileListForPath();
+        fileSystem.pop_back();
+        fileIndex.pop_back();
+//        getFileListForPath();
         glutPostRedisplay();
     }
 }
 
 void mainIdle() {
-    /**
-     Set the active window before send an glutPostRedisplay call
-     so it wont be accidently sent to the glui window
-     */
     glutSetWindow(mainWindowId);
-//    glutPostRedisplay();
 }
 
 /**
@@ -114,7 +113,7 @@ void onWindowReshape(int x, int y) {
     windowHeight = y;
     setWindow();
     setViewport(0, windowWidth, 0, windowHeight);
-        glutPostRedisplay();
+    glutPostRedisplay();
 }
 
 void renderScene() {
