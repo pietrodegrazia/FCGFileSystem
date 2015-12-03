@@ -34,6 +34,14 @@ void updateIndex(bool increment){
     
 }
 
+void openFile(char* filePath){
+    char* command = (char*)malloc(sizeof(char)*FILENAME_MAX);
+    strcpy(command, "open '");
+    strcat(command, filePath);
+    strcat(command, "'");
+//    printf(command);
+    system(command);
+}
 
 void handleEnterPressed(){
     printf("\n************* ENTER PRESSED ****************\n");
