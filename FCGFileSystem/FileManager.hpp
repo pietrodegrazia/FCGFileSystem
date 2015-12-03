@@ -20,7 +20,7 @@
 
 using namespace std;
 
-#define kRootFolder "/Users/pietrodegrazia/Documents/UFRGS/FCG/FCGFileSystem/FCGFileSystem/DirA"
+#define kRootFolder "/Users/valcanaia/Documents/UFRGS/2015-2/FCG/Trabalho Final/FCGFileSystem/FCGFileSystem/DirA"
 
 
 extern char* getCurrentPathAppending(const char* component);

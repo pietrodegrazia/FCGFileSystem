@@ -81,12 +81,12 @@ void updateIndex(bool increment){
     
 }
 
-void openFile(char* filePath){
-    char* command = (char*)malloc(sizeof(char)*FILENAME_MAX);
-    strcpy(command, "open '");
-    strcat(command, filePath);
-    strcat(command, "'");
-//    printf(command);
+void openFile(char* filePath, char* fileName){
+    char* fullFilePath = (char*)malloc(sizeof(char)*FILENAME_MAX*fileSystem.size());
+    sprintf(fullFilePath, "%s%s", filePath, fileName);
+    
+    char* command = (char*)malloc(sizeof(char)*FILENAME_MAX*fileSystem.size());
+    sprintf(command, "open '%s'", fullFilePath);
     system(command);
 }
 
@@ -97,6 +97,7 @@ void handleEnterPressed(){
     int file = direntIsFile(fileSystem[depth][currentIndex]);
     if (file == 1) {
         printf("  File: %s\n   Index: %i", fileSystem[currentPathComponents.size()][currentIndex].d_name, currentIndex);
+        openFile(getCurrentPath(), fileSystem[depth][currentIndex].d_name);
     } else if (file == 0){
         printf("  Directory: %s\n   Index: %i", fileSystem[currentPathComponents.size()][currentIndex].d_name, currentIndex);
 

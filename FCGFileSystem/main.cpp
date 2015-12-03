@@ -80,9 +80,7 @@ int main(int argc, char **argv) {
     mainInit();
     lightInit();
     
-    glutSetCursor(GLUT_CURSOR_NONE); // hide mouse
-    
-    
+//    glutSetCursor(GLUT_CURSOR_NONE); // hide mouse
     
     /**
      Create GLUT mouse button menus
