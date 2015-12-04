@@ -41,6 +41,7 @@ using namespace std;
 
 
 int main(int argc, char **argv);
+
 void lightInit(void){
     GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
     GLfloat mat_shininess[] = { 50.0 };
@@ -79,7 +80,8 @@ int main(int argc, char **argv) {
     
     mainInit();
     lightInit();
-    
+    glEnable(GL_DEPTH);
+
 //    glutSetCursor(GLUT_CURSOR_NONE); // hide mouse
     
     /**

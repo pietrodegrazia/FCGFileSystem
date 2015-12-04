@@ -84,6 +84,7 @@ void drawCube(GLfloat x, GLfloat y, GLfloat z, bool shouldHighlight){
     glVertex3f( -1, -1, -1 );
     glEnd();
 
+
     glPopMatrix();
 
 //    glFlush();
@@ -101,8 +102,9 @@ void drawSphere(GLfloat x, GLfloat y, GLfloat z, bool shouldHighlight){
     } else {
         glColor3f(1.0f, 1.0f, 1.0f);
     }
-    
+
     glutSolidSphere(FILE_SPHERE_RADIUS ,MAX_SECTORS , MAX_RINGS);
+    
     
     glPopMatrix();
     
