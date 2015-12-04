@@ -13,3 +13,6 @@ Create a visual representation of a file system.
 ## Technical requirements
 The visualization must be created using C/C++ and OpenGL, using Windows or Linux in case of classic OpenGL or Modern OpenGL, or WebGL, allowing to run it on the browser.
 
+## To run
+- You can select the root folder setting the constant "kRootFolder" in FileManager.hpp.
+- In order to use the floor texture you must set the path in Render.cpp, line 35.
